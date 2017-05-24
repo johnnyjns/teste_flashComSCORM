@@ -120,8 +120,8 @@
                 <displayStage>
                     <!-- Replace with target width and height of movie. (From Project Information -> Resolution -->
                     <desired>
-                        <width>750</width>
-                        <height>550</height>
+                        <width>1024</width>
+                        <height>640</height>
                         <fullscreen>no</fullscreen>
                     </desired>
                     <required>
