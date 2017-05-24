@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Segurança da Informação</title>
+<link rel="stylesheet" href="biblioteca/css/estilos.css" type="text/css"/>
+<script type="text/javascript" src="biblioteca/js/swfobject.js"></script>
+<script type="text/javascript" src="biblioteca/js/SCORM_API_wrapper.js"></script>
+<script type="text/javascript">
+
+//Definição da versão do Scorm utilizada
+var scorm = pipwerks.SCORM;
+scorm.version = "1.2";
+
+function fecharJanela()
+{
+	 var tab = window.open(window.location, "_self");
+	 tab.close();
+	 var tab2 = window.open(window.location,"_top");
+	 tab2.close();
+}
+
+//Verifica se conexão com LMS ainda está ativa
+window.onunload = window.onbeforeunload = function()
+{
+	if(scorm.connection.isActive)
+	{
+		pipwerks.UTILS.trace("Finalizando conexão no Unload");
+		scorm.save();
+		scorm.quit();
+	}
+}
+
+function addSwf()
+{
+	var flashvars =
+	{
+		forma: "lms"
+	};
+
+	var params =
+	{
+		wmode: "transparent",
+		quality: "best"
+	};
+
+	swfobject.embedSWF("index.swf", "flash", "100%", "100%", "8.0.0","biblioteca/js/expressInstall.swf", flashvars, params);
+}
+
+window.onload = function()
+{
+	addSwf();
+}
+
+</script>
+
+</head>
+<body bgcolor="#ffffff">
+<div id="flash"><p align="center">Este curso necessita de Flash Player 8 ou versão posterior.</p></div>
+</body>
+</html>
